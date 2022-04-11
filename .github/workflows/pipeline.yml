@@ -1,0 +1,19 @@
+---
+on:
+  - push
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  test:
+    environment: testAccount
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup aws creds
+        uses: aws-actions/configure-aws-credentials@v1.6.1
+        with:
+          role-to-assume: ${{ secrets.ASSUME_ROLE_ARN }}
+          aws-region: eu-west-2
+          role-session-name: github-actions-deploy
