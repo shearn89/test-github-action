@@ -17,3 +17,7 @@ jobs:
           role-to-assume: ${{ secrets.ASSUME_ROLE_ARN }}
           aws-region: eu-west-2
           role-session-name: github-actions-deploy
+
+      - name: test s3
+        run: |
+          aws s3 ls s3://ajshearn-test-bucket/hello.txt
